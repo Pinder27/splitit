@@ -10,6 +10,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -43,6 +44,14 @@ public class GroupService {
         groupMemberRepository.save(creatorMember);
 
         return group;
+    }
+
+    public List<User> getGroupMembers(Long groupId) {
+        return groupMemberRepository.findMembersByGroupId(groupId);
+    }
+
+    public List<Group> getGroupsByUserId(Long userId) {
+        return groupMemberRepository.findGroupsByUserId(userId);
     }
 
     public Optional<Group> getGroupById(Long id) {
